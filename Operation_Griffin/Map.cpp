@@ -20,14 +20,17 @@ void Map::draw()
 	{
 		for (int y = 0; y < MAX_Y; ++y)
 		{
-			if (map[x][y].begin != NULL)
-				std::cout << map[x][y][0];
+			if (map[x][y].front() != NULL)
+				map[x][y].front()->draw();
+			else
+				std::cout << '.';
 		}
+		std::cout << std::endl;
 	}
 }
 
 /**/
 void Map::addCharacter(Character* pCharacter, int pX, int pY)
 {
-
+	map[pX][pY].push_back(pCharacter);
 }

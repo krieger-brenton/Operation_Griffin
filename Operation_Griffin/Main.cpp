@@ -1,7 +1,9 @@
 #include "Character.h"
 #include "Sword.h"
 #include "Mace.h"
+#include "Map.h"
 #include <iostream>
+
 
 
 
@@ -19,14 +21,14 @@ int main(int argc, char* argv[])
 	player.setWeapon(pItem);
 	player.getWeapon()->print();
 
-
-
+	Map map;
+	map.addCharacter(&player, 5, 5);
 	while (true)
 	{
 		//pull keyboard
 		//update characters
 		//draw
-		player.draw();
+		map.draw();
 	}
 
 	return 0;
