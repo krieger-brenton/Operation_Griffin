@@ -1,5 +1,6 @@
 #include "Character.h"
 #include <iostream>
+#include <iomanip>
 
 /**/
 void Character::setWeapon(Weapon* pWeapon)
@@ -15,5 +16,5 @@ void Character::setWeapon(Weapon* pWeapon)
 /**/
 void Character::draw()
 {
-	std::cout << me;
+	std::cout << me << std::setw(3);
 }

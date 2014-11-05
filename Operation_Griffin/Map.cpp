@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+#include <iomanip>
 
 /**/
 Map::Map()
@@ -24,10 +25,16 @@ void Map::draw()
 			if (map[x][y].back() != NULL)
 			{
 				map[x][y].back()->draw();
-				//std::cerr << "I drew it!" << std::endl;
 			}
 			else
-				std::cout << '.';
+			{
+				if (x == 0 || x == MAX_X - 1)
+					std::cout << '-' << std::setw(3);
+				else if (y == 0 || y == MAX_Y - 1)
+					std::cout << '|' << std::setw(3);
+				else
+					std::cout << '.' << std::setw(3);
+			}
 		}
 		std::cout << std::endl;
 	}

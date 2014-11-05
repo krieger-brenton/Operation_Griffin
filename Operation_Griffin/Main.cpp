@@ -27,8 +27,6 @@ int main(int argc, char* argv[])
 	int i = 0;
 	while (i == 0)
 	{
-		player.draw();
-		std::cout << std::endl;
 		//pull keyboard
 		//update characters
 		//draw
@@ -38,7 +36,7 @@ int main(int argc, char* argv[])
 
 	while (true)
 	{
-		i++;
+		i++; //my stupid pause
 	}
 	return 0;
 }
