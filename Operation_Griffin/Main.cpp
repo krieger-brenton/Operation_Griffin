@@ -20,16 +20,25 @@ int main(int argc, char* argv[])
 	Weapon * pItem = new Sword;
 	player.setWeapon(pItem);
 	player.getWeapon()->print();
+	player.setMe('@');
 
 	Map map;
-	map.addCharacter(&player, 5, 5);
-	while (true)
+	map.addCharacter(&player, 2, 2);
+	int i = 0;
+	while (i == 0)
 	{
+		player.draw();
+		std::cout << std::endl;
 		//pull keyboard
 		//update characters
 		//draw
 		map.draw();
+		i++;
 	}
 
+	while (true)
+	{
+		i++;
+	}
 	return 0;
 }

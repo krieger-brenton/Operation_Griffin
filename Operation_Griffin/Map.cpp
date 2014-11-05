@@ -4,13 +4,14 @@
 /**/
 Map::Map()
 {
-	/*for (int x = 0; x < MAX_X; ++x)
+	Character* pPlayer = NULL;
+	for (int x = 0; x < MAX_X; ++x)
 	{
-	for (int y = 0; y < MAX_Y; ++y)
-	{
-	//init map
+		for (int y = 0; y < MAX_Y; ++y)
+		{
+			map[x][y].push_back(pPlayer);
+		}
 	}
-	}*/
 }
 
 /**/
@@ -20,8 +21,11 @@ void Map::draw()
 	{
 		for (int y = 0; y < MAX_Y; ++y)
 		{
-			if (map[x][y].front() != NULL)
-				map[x][y].front()->draw();
+			if (map[x][y].back() != NULL)
+			{
+				map[x][y].back()->draw();
+				//std::cerr << "I drew it!" << std::endl;
+			}
 			else
 				std::cout << '.';
 		}

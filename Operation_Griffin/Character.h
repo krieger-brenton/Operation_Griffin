@@ -12,6 +12,7 @@ public:
 	Weapon* getWeapon() { return weapon; }
 	void draw();
 	char getMe() { return me; }
+	void setMe(char a) { me = a; }
 	//void attack();
 private:
 	char me;
