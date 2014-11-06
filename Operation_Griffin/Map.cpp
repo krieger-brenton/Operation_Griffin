@@ -1,6 +1,7 @@
 #include "Map.h"
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 
 /**/
 Map::Map()
@@ -18,6 +19,7 @@ Map::Map()
 /**/
 void Map::draw()
 {
+	system("CLS");
 	for (int x = MAX_X - 1; x > -1; x--)
 	{
 		for (int y = 0; y < MAX_Y; ++y)
@@ -54,14 +56,14 @@ void Map::movePlayer(int xOffset, int yOffset)
 		{
 			if (map[x][y].back() != NULL)
 			{
-				Character* pChar = map[x][y].back();
-				if (x + xOffset < MAX_X - 1 && x + xOffset > -1 &&
-					y + yOffset < MAX_Y - 1 && y + yOffset > -1)
+				if (x + xOffset < MAX_X  && x + xOffset > -1 &&
+					y + yOffset < MAX_Y  && y + yOffset > -1)
 				{
+					Character* pChar = map[x][y].back();
 					map[x][y].pop_back();
 					addCharacter(pChar, x + xOffset, y + yOffset);
-					std::cerr << "X:" << x << " Y:" << y << " xOffset:" << xOffset << " yOffset:" << yOffset << std::endl;
-					break;
+					//std::cerr << "X:" << x << " Y:" << y << " xOffset:" << xOffset << " yOffset:" << yOffset << std::endl;
+					return;
 				}
 			}
 		}

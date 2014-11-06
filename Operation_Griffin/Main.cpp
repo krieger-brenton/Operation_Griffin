@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 		//poll keyboard
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
-			std::cerr << "Up was pressed" << std::endl;
+			//std::cerr << "Up was pressed" << std::endl;
 			map.movePlayer(1, 0);
 			map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
@@ -43,21 +43,21 @@ int main(int argc, char* argv[])
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		{
 
-			std::cerr << "Left was pressed" << std::endl;
+			//std::cerr << "Left was pressed" << std::endl;
 			map.movePlayer(0, -1);
 			map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		{
-			std::cerr << "Right was pressed" << std::endl;
+			//std::cerr << "Right was pressed" << std::endl;
 			map.movePlayer(0, 1);
 			map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		{
-			std::cerr << "Down was pressed" << std::endl;
+			//std::cerr << "Down was pressed" << std::endl;
 			map.movePlayer(-1, 0);
 			map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
