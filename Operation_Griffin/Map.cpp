@@ -18,7 +18,7 @@ Map::Map()
 /**/
 void Map::draw()
 {
-	for (int x = 0; x < MAX_X; ++x)
+	for (int x = MAX_X - 1; x > -1; x--)
 	{
 		for (int y = 0; y < MAX_Y; ++y)
 		{
@@ -44,4 +44,26 @@ void Map::draw()
 void Map::addCharacter(Character* pCharacter, int pX, int pY)
 {
 	map[pX][pY].push_back(pCharacter);
+}
+
+void Map::movePlayer(int xOffset, int yOffset)
+{
+	for (int x = MAX_X - 1; x > -1; x--)
+	{
+		for (int y = 0; y < MAX_Y; ++y)
+		{
+			if (map[x][y].back() != NULL)
+			{
+				Character* pChar = map[x][y].back();
+				if (x + xOffset < MAX_X - 1 && x + xOffset > -1 &&
+					y + yOffset < MAX_Y - 1 && y + yOffset > -1)
+				{
+					map[x][y].pop_back();
+					addCharacter(pChar, x + xOffset, y + yOffset);
+					std::cerr << "X:" << x << " Y:" << y << " xOffset:" << xOffset << " yOffset:" << yOffset << std::endl;
+					break;
+				}
+			}
+		}
+	}
 }

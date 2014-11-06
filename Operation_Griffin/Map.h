@@ -13,6 +13,7 @@ public:
 	void draw();
 	void addCharacter(Character* pCharacter, int pX, int pY);
 	std::vector<Character*> map[MAX_X][MAX_Y];
+	void movePlayer(int xOffset, int yOffset);
 private:
 
 };
