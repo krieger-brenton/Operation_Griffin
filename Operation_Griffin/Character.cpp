@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Armor.h"
 #include <iostream>
 #include <iomanip>
 
@@ -17,4 +18,13 @@ void Character::setWeapon(Weapon* pWeapon)
 void Character::draw()
 {
 	std::cout << me << std::setw(3);
+}
+
+/**/
+void Character::setArmor(Armor* pArmor)
+{
+	if (pArmor != NULL)
+		armor[pArmor->getType()] = pArmor;
+	else
+		; //throw error?
 }

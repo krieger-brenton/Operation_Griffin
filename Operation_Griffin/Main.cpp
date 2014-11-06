@@ -2,6 +2,7 @@
 #include "Sword.h"
 #include "Mace.h"
 #include "Map.h"
+#include "Armor.h"
 #include <iostream>
 #include <windows.h>
 #include <thread>
@@ -12,18 +13,25 @@
 
 int main(int argc, char* argv[])
 {
-	Item* inventory[2];
+	Item* inventory[3];
 	inventory[0] = new Sword;
 	inventory[1] = new Mace;
+	inventory[2] = new Armor(HEAD, LEATHER, 1);
 
 	inventory[0]->print();
 	inventory[1]->print();
+	inventory[2]->print();
 
 	Character player;
 	Weapon * pItem = new Sword;
 	player.setWeapon(pItem);
+	player.setArmor(new Armor(LEGS, METAL, 2));
 	player.getWeapon()->print();
+	player.getArmor()[LEGS]->print();
 	player.setMe('@');
+
+	int pause;
+	std::cin >> pause;
 
 	Map map;
 	map.addCharacter(&player, 2, 2);
@@ -89,5 +97,6 @@ int main(int argc, char* argv[])
 		}
 		i++; //my stupid pause
 	}
+	
 	return 0;
 }
