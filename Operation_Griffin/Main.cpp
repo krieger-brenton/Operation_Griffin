@@ -35,23 +35,48 @@ int main(int argc, char* argv[])
 		//poll keyboard
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
-			std::cerr << "Up is being pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::cerr << "Up was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		{
-			std::cerr << "Left is being pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::cerr << "Left was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		{
-			std::cerr << "Right is being pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::cerr << "Right was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		{
-			std::cerr << "Down is being pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::cerr << "Down was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		{
+			std::cerr << "Space was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		if (GetAsyncKeyState('D') & 0x8000)
+		{
+			std::cerr << "d was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		if (GetAsyncKeyState('W') & 0x8000)
+		{
+			std::cerr << "w was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		if (GetAsyncKeyState('A') & 0x8000)
+		{
+			std::cerr << "a was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		}
+		if (GetAsyncKeyState('S') & 0x8000)
+		{
+			std::cerr << "s was pressed" << std::endl;
+			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		i++; //my stupid pause
 	}
