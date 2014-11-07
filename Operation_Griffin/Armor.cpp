@@ -5,6 +5,7 @@
 Armor::Armor(int pType, int pMaterial, int pResistance) 
 	: Item(), type(NO_TYPE), material(NO_MAT), resistance(0)
 {
+	setName("ARMOR");
 	setType(pType);
 	setMaterial(pMaterial);
 	setResistance(pResistance);
@@ -28,7 +29,7 @@ void Armor::setType(int pType)
 		type = pType;
 	}
 	else
-		; // throw error?
+		std::cerr << "ERROR int type " << pType << std::endl; // throw error?
 }
 
 /**/
@@ -39,7 +40,7 @@ void Armor::setMaterial(int pMaterial)
 		material = pMaterial;
 	}
 	else
-		; // throw error?
+		std::cerr << "ERROR in material " << pMaterial << std::endl; // throw error?
 
 }
 
@@ -56,8 +57,8 @@ void Armor::setResistance(int pResistance)
 
 void Armor::print()
 {
-	std::string materials[5] = { "", "Cloth", "Leather", "Metal" "No Material" };
-	std::string types[5] = { "", "Head", "Chest", "Legs", "No Type" };
+	std::string materials[4] = { "Cloth", "Leather", "Metal", "No Material" };
+	std::string types[4] = { "Head", "Chest", "Legs", "No Type" };
 	std::cout << "Name: " << name
 		<< "\nType: " << types[type]
 		<< "\nMaterial: " << materials[material]

@@ -21,7 +21,7 @@ void Store::generateItems()
 		{
 			int type = (rand() % 3);
 			int mat = (rand() % 3);
-			int resistance = ((rand() % statMax) * mat) + 1;
+			int resistance = ((rand() % statMax) * mat + 1);
 			store[i] = new Armor(type, mat, resistance, strength, intelligence, agility);
 		}
 		else // Weapon

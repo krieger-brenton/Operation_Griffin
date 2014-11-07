@@ -5,7 +5,7 @@
 #include "Item.h"
 #include "time.h"
 
-#define STORE_SIZE 3
+#define STORE_SIZE 10
 class Store
 {
 public:
