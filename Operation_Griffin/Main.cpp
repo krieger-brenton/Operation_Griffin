@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Armor.h"
 #include "mtrand.h"
+#include "Store.h"
 #include <iostream>
 #include <windows.h>
 #include <thread>
@@ -14,6 +15,7 @@
 
 int main(int argc, char* argv[])
 {
+	std::cout << "TESTING INVENTORY" << std::endl;
 	Item* inventory[3];
 	inventory[0] = new Sword;
 	inventory[1] = new Mace;
@@ -23,6 +25,7 @@ int main(int argc, char* argv[])
 	inventory[1]->print();
 	inventory[2]->print();
 
+	std::cout << std::endl << "TESTING CHARACTER" << std::endl;
 	Character player;
 	Weapon * pItem = new Sword;
 	player.setWeapon(pItem);
@@ -31,6 +34,14 @@ int main(int argc, char* argv[])
 	player.getArmor()[LEGS]->print();
 	player.setMe('@');
 
+	std::cout << std::endl << "TESTING STORE" << std::endl;
+	// Store testing
+	Store store;
+	store.generateItems();
+	store.showItems();
+
+
+	/* START OF PRNG TESTING
 	MTRand_int32 rand;
 	unsigned long s = time(0); // I think this is giving me the current time. 
 	rand.seed(s);
@@ -41,6 +52,7 @@ int main(int argc, char* argv[])
 		if (i % 5 == 4)
 			std::cout << std::endl;
 	}
+	END OF PRNG TESTING*/
 
 	int pause;
 	std::cin >> pause;

@@ -39,6 +39,9 @@
     <ClInclude Include="mtrand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Store.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Weapon.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mtrand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Store.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

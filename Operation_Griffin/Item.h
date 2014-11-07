@@ -6,7 +6,7 @@ class Item
 {
 public:
 	Item() : strength(0), intelligence(0), agility(0), name("ITEM") {}
-	Item(int, int, int);
+	Item(int strength, int intelligence, int agility);
 	int getStrength() { return strength; }
 	int getIntelligence() { return intelligence; }
 	int getAgility() { return agility; }

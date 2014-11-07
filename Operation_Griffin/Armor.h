@@ -9,7 +9,9 @@ enum MATERIAL {CLOTH, LEATHER, METAL, NO_MAT};
 class Armor : public Item
 {
 public:
-	Armor() : Item(), type(NO_TYPE), material(NO_MAT), resistance(0) {}
+	Armor() : Item(), type(NO_TYPE), material(NO_MAT), resistance(0) { setName("ARMOR"); }
+	Armor(int pType, int pMaterial, int pResistance, int pStrength,
+		int pIntelligence, int pAgility);
 	Armor(int pType, int pMaterial, int pResistance);
 
 	void setType(int pType);

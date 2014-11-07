@@ -1,0 +1,20 @@
+#ifndef STROE_H
+#define STORE_H
+
+#include "mtrand.h"
+#include "Item.h"
+#include "time.h"
+
+#define STORE_SIZE 3
+class Store
+{
+public:
+	Store() {rand.seed(time(0)); }
+	void generateItems();
+	void showItems();
+private:
+	MTRand_int32 rand;
+	Item* store[STORE_SIZE];
+};
+
+#endif /* STORE_H */
