@@ -6,6 +6,12 @@
 #include "time.h"
 
 #define STORE_SIZE 10
+
+
+/**********************************************
+* Class Store
+* Generates and shows items.
+**********************************************/
 class Store
 {
 public:

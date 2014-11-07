@@ -6,6 +6,11 @@
 enum ARMORTYPE {HEAD, CHEST, LEGS, NO_TYPE};
 enum MATERIAL {CLOTH, LEATHER, METAL, NO_MAT};
 
+
+/**********************************************
+* Class Armor
+* Subclass of Item
+**********************************************/
 class Armor : public Item
 {
 public:
