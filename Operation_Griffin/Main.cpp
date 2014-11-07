@@ -10,7 +10,14 @@
 #include <thread>
 #include <chrono>
 #include "GameData.h"
+
+//initialize our Singleton pointers to NULL
 GameData *GameData::s_instance = NULL;
+
+/*******************************************
+* Main.
+* 'nough said.
+********************************************/
 int main(int argc, char* argv[])
 {
 	std::cout << "TESTING INVENTORY" << std::endl;
@@ -50,46 +57,43 @@ int main(int argc, char* argv[])
 	}
 	END OF PRNG TESTING*/
 
-	int pause;
-	std::cin >> pause;
+	//int pause;
+	//std::cin >> pause;
 
-	/*
+	
 
-	Map map;
-	map.addCharacter(&player, 2, 2);
-	int i = 0;
-		map.draw();
-		i++;
+	GameData::instance()->map.addCharacter(&GameData::instance()->player, 2, 2);
+	GameData::instance()->map.draw();
 	while (true)
 	{
 		//poll keyboard
 		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
 			//std::cerr << "Up was pressed" << std::endl;
-			map.movePlayer(1, 0);
-			map.draw();
+			GameData::instance()->map.movePlayer(1, 0);
+			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		{
 
 			//std::cerr << "Left was pressed" << std::endl;
-			map.movePlayer(0, -1);
-			map.draw();
+			GameData::instance()->map.movePlayer(0, -1);
+			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		{
 			//std::cerr << "Right was pressed" << std::endl;
-			map.movePlayer(0, 1);
-			map.draw();
+			GameData::instance()->map.movePlayer(0, 1);
+			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		{
 			//std::cerr << "Down was pressed" << std::endl;
-			map.movePlayer(-1, 0);
-			map.draw();
+			GameData::instance()->map.movePlayer(-1, 0);
+			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
 		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
@@ -117,10 +121,6 @@ int main(int argc, char* argv[])
 			std::cerr << "s was pressed" << std::endl;
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
-		i++; //my stupid pause
 	}
-
-	*/
-	
 	return 0;
 }

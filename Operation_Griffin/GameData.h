@@ -3,9 +3,17 @@
 #include "Map.h"
 #include "Store.h"
 #include <vector>
+
+
+/**********************************************
+* Class GameData
+* A Singleton class to hold all instances of
+* Game objects.
+**********************************************/
 class GameData
 {
 public:
+	//our singleton instance
 	static GameData * instance() {
 		if (!s_instance)
 			s_instance = new GameData;
