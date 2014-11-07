@@ -3,6 +3,7 @@
 #include "Mace.h"
 #include "Map.h"
 #include "Armor.h"
+#include "mtrand.h"
 #include <iostream>
 #include <windows.h>
 #include <thread>
@@ -30,8 +31,22 @@ int main(int argc, char* argv[])
 	player.getArmor()[LEGS]->print();
 	player.setMe('@');
 
+	MTRand_int32 rand;
+	
+	unsigned long s = 0;
+	rand.seed(s);
+
+	for (int i = 0; i < 100; ++i)
+	{
+		std::cout << rand() << ' ';
+		if (i % 5 == 4)
+			std::cout << std::endl;
+	}
+
 	int pause;
 	std::cin >> pause;
+
+	/*
 
 	Map map;
 	map.addCharacter(&player, 2, 2);
@@ -97,6 +112,8 @@ int main(int argc, char* argv[])
 		}
 		i++; //my stupid pause
 	}
+
+	*/
 	
 	return 0;
 }
