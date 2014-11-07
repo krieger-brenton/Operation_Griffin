@@ -32,8 +32,7 @@ int main(int argc, char* argv[])
 	player.setMe('@');
 
 	MTRand_int32 rand;
-	
-	unsigned long s = 0;
+	unsigned long s = time(0); // I think this is giving me the current time. 
 	rand.seed(s);
 
 	for (int i = 0; i < 100; ++i)
