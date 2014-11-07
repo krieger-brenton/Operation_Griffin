@@ -9,10 +9,8 @@
 #include <windows.h>
 #include <thread>
 #include <chrono>
-
-
-
-
+#include "GameData.h"
+GameData *GameData::s_instance = NULL;
 int main(int argc, char* argv[])
 {
 	std::cout << "TESTING INVENTORY" << std::endl;
@@ -26,19 +24,17 @@ int main(int argc, char* argv[])
 	inventory[2]->print();
 
 	std::cout << std::endl << "TESTING CHARACTER" << std::endl;
-	Character player;
 	Weapon * pItem = new Sword;
-	player.setWeapon(pItem);
-	player.setArmor(new Armor(LEGS, METAL, 2));
-	player.getWeapon()->print();
-	player.getArmor()[LEGS]->print();
-	player.setMe('@');
+	GameData::instance()->player.setWeapon(pItem);
+	GameData::instance()->player.setArmor(new Armor(LEGS, METAL, 2));
+	GameData::instance()->player.getWeapon()->print();
+	GameData::instance()->player.getArmor()[LEGS]->print();
+	GameData::instance()->player.setMe('@');
 
 	std::cout << std::endl << "TESTING STORE" << std::endl;
 	// Store testing
-	Store store;
-	store.generateItems();
-	store.showItems();
+	GameData::instance()->store.generateItems();
+	GameData::instance()->store.showItems();
 
 
 	/* START OF PRNG TESTING

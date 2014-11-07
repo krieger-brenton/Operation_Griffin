@@ -1,4 +1,4 @@
-#ifndef STROE_H
+#ifndef STORE_H
 #define STORE_H
 
 #include "mtrand.h"
