@@ -29,7 +29,10 @@ void Armor::setType(int pType)
 		type = pType;
 	}
 	else
-		std::cerr << "ERROR int type " << pType << std::endl; // throw error?
+	{
+		type = NO_TYPE;
+		std::cerr << "ERROR in setting type " << pType << std::endl; // throw error?
+	}
 }
 
 /**/
@@ -40,7 +43,10 @@ void Armor::setMaterial(int pMaterial)
 		material = pMaterial;
 	}
 	else
-		std::cerr << "ERROR in material " << pMaterial << std::endl; // throw error?
+	{
+		material = NO_MAT;
+		std::cerr << "ERROR in setting material " << pMaterial << std::endl; // throw error?
+	}
 
 }
 
@@ -52,7 +58,10 @@ void Armor::setResistance(int pResistance)
 		resistance = pResistance;
 	}
 	else
-		; // Throw error?
+	{
+		pResistance = 0;
+		std::cout << "ERROR in setting resistance" << pResistance << std::endl; // Throw error?
+	}
 }
 
 void Armor::print()
