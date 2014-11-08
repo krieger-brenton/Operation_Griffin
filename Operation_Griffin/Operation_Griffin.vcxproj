@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -25,7 +26,10 @@
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CPoint.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GameData.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Mace.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Item.h" />

@@ -1,7 +1,7 @@
 #include "Character.h"
-#include "Armor.h"
 #include <iostream>
 #include <iomanip>
+#include <cassert> 
 
 /**/
 void Character::setDirection(int pDirection)

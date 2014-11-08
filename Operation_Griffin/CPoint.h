@@ -1,6 +1,8 @@
 #ifndef CPOINT_H
 #define CPOINT_H
 
+#include <math.h>
+
 class CPoint
 {
 public:
@@ -10,7 +12,7 @@ public:
 	void setY(int pY) { y = pY; }
 	int getX() { return x; }
 	int getY() { return y; }
-	//int difference(CPoint p);
+	int difference(CPoint p) { return std::sqrt(std::pow(x + p.getX(), 2) + std::pow(y + p.getY(), 2)); }
 private:
 	int x;
 	int y;

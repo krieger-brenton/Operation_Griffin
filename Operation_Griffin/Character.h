@@ -6,7 +6,7 @@
 #include "CPoint.h"
 #define PLAYER '@'
 
-enum DIRECTION {NORTH, EAST, SOUTH, WEST};
+enum DIRECTION { NORTH, EAST, SOUTH, WEST };
 
 class Character
 {
@@ -39,14 +39,14 @@ private:
 class Player : public Character
 {
 public:
-	Player() : Character(){};
+	Player() : Character() {}
 	virtual char type() { return 'P'; }
 };
 
 class Enemy : public Character
 {
 public:
-	Enemy() : Character(){};
+	Enemy() : Character() {}
 	virtual char type() { return 'E'; }
 };
 
