@@ -1,12 +1,12 @@
 /******************************************************************************
-* CLASS ARMOR
+* CLASS ARMOR Inherits from class Item
 * Member Varaibles:
 * 	int type - The part of the body were the Armor can be equiped. (e.g., Head,
-		Chest, Legs)
+*		Chest, Legs)
 *	int material - The material the Armor is made of. (e.g., Cloth, Leather, 
-		Metal)
+*		Metal)
 *	int resistance - Statistical value to calculate how much damage the Armor
-		can negate.
+*		can negate.
 *
 * Contructors:
 * default constructor:
@@ -25,27 +25,23 @@
 *	void getResistance()
 *	Mutators:
 *	void setType(int pType) - If pType is not within 0 and 3(NO_TYPE) it is
-		set to 3(NO_TYPE) and an error is displayed.
+*		set to 3(NO_TYPE) and an error is displayed.
 *	void setMaterial(int pMaterial) - If pMaterial is not within 0 and 3(NO_MAT)
-		it is set to 3(NO_MAT) and an error is displayed.
+*		it is set to 3(NO_MAT) and an error is displayed.
 *	void setResistance(int pResistance) - If pResistance is negative then 
-		resistance is set to zero and an error is displayed.
+*		resistance is set to zero and an error is displayed.
 *	void print() - Virtual function, overwritten to show all member and 
-		inherited variables.
+*		inherited variables.
 ******************************************************************************/
-
 #ifndef ARMOR_H
 #define ARMOR_H
 
 #include "Item.h"
-
 enum ARMORTYPE {HEAD, CHEST, LEGS, NO_TYPE};
 enum MATERIAL {CLOTH, LEATHER, METAL, NO_MAT};
 
-
 /**********************************************
 * Class Armor
-* Subclass of Item
 **********************************************/
 class Armor : public Item
 {

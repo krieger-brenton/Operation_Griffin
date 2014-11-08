@@ -1,7 +1,9 @@
 #include "Armor.h"
 #include <iostream>
 
-/**/
+/******************************************************************************
+*	Constructor : Armor(int, int, int)
+******************************************************************************/
 Armor::Armor(int pType, int pMaterial, int pResistance) 
 	: Item(), type(NO_TYPE), material(NO_MAT), resistance(0)
 {
@@ -11,7 +13,9 @@ Armor::Armor(int pType, int pMaterial, int pResistance)
 	setResistance(pResistance);
 }
 
-/**/
+/******************************************************************************
+*	Constructor : Armor(int, int, int, int, int, int)
+******************************************************************************/
 Armor::Armor(int pType, int pMaterial, int pResistance, int pStrength,
 	int pIntelligence, int pAgility) : Item(pStrength, pIntelligence, pAgility)
 {
@@ -21,7 +25,9 @@ Armor::Armor(int pType, int pMaterial, int pResistance, int pStrength,
 	setResistance(pResistance);
 }
 
-/**/
+/******************************************************************************
+*	
+******************************************************************************/
 void Armor::setType(int pType)
 {
 	if (pType >= HEAD && pType <= NO_TYPE)
@@ -35,7 +41,9 @@ void Armor::setType(int pType)
 	}
 }
 
-/**/
+/******************************************************************************
+*
+******************************************************************************/
 void Armor::setMaterial(int pMaterial)
 {
 	if (pMaterial >= CLOTH && pMaterial <= NO_MAT)
@@ -50,7 +58,9 @@ void Armor::setMaterial(int pMaterial)
 
 }
 
-/**/
+/******************************************************************************
+*
+******************************************************************************/
 void Armor::setResistance(int pResistance)
 {
 	if (pResistance >= 0)
@@ -64,6 +74,9 @@ void Armor::setResistance(int pResistance)
 	}
 }
 
+/******************************************************************************
+*
+******************************************************************************/
 void Armor::print()
 {
 	std::string materials[4] = { "Cloth", "Leather", "Metal", "No Material" };

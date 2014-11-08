@@ -4,6 +4,15 @@
 #include <iomanip>
 
 /**/
+void Character::setDirection(int pDirection)
+{
+	if (pDirection >= NORTH && pDirection <= WEST)
+		direction = pDirection;
+	else
+		std::cerr << "ERROR is set Direction" << std::endl;
+}
+
+/**/
 void Character::setWeapon(Weapon* pWeapon)
 {
 	if (pWeapon != NULL)
@@ -11,8 +20,6 @@ void Character::setWeapon(Weapon* pWeapon)
 	else
 		;//Throw error?
 }
-
-
 
 /**/
 void Character::draw()

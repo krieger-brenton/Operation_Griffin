@@ -3,7 +3,10 @@
 
 #include "Weapon.h"
 #include "Armor.h"
+#include "CPoint.h"
 #define PLAYER '@'
+
+enum DIRECTION {NORTH, EAST, SOUTH, WEST};
 
 class Character
 {
@@ -11,15 +14,18 @@ public:
 	Character() : me(PLAYER) {}
 	void setWeapon(Weapon* pWeapon);
 	void setArmor(Armor* pArmor);
+	void setDirection(int pDirection);
+	int getDirection() { return direction; }
 	Weapon* getWeapon() { return weapon; }
 	Armor** getArmor() { return armor; }
 	void draw();
 	char getMe() { return me; }
 	void setMe(char a) { me = a; }
+	//void update();
 	//void attack();
 private:
 	char me;
-	//Point location;
+	CPoint location;
 	int direction;
 	int Health;
 	int Strength;
@@ -28,6 +34,4 @@ private:
 	Weapon* weapon;
 	Armor* armor[3];
 };
-
-
 #endif /* CHARACTER_H */

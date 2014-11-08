@@ -24,6 +24,7 @@
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CPoint.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="Mace.h" />
     <ClInclude Include="Map.h" />
