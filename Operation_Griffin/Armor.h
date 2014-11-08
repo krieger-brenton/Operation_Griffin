@@ -50,20 +50,23 @@ enum MATERIAL {CLOTH, LEATHER, METAL, NO_MAT};
 class Armor : public Item
 {
 public:
+	//constructors
 	Armor() : Item(), type(NO_TYPE), material(NO_MAT), resistance(0) { setName("ARMOR"); }
 	Armor(int pType, int pMaterial, int pResistance);
 	Armor(int pType, int pMaterial, int pResistance, int pStrength,
 		int pIntelligence, int pAgility);
 	
-
+	//accessors
 	void setType(int pType);
 	void setMaterial(int pMaterial);
 	void setResistance(int pResistance);
 
+	//mutators
 	inline int getType() { return type; }
 	inline int getMaterial() { return material; }
 	inline int getResistance() { return resistance; }
 
+	//display
 	void print() sealed;
 
 private:
