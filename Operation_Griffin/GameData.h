@@ -16,16 +16,16 @@ public:
 	//our singleton instance
 	static GameData * instance() {
 		if (!s_instance)
-			s_instance = new GameData;
+			s_instance = new GameData();
 		return s_instance;
 	}
-	Character player;
-	std::vector<Character*> otherPlayers;
+	Character* player;
+	Character* enemy;
 	std::vector<Character*> enemies;
 	Map map;
 	Store store;
 private:
 	static GameData *s_instance;
-	GameData() {};
+	GameData();
 };
 

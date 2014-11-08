@@ -21,6 +21,7 @@ public:
 	void draw();
 	char getMe() { return me; }
 	void setMe(char a) { me = a; }
+	virtual char type() { return 'C'; }
 	//void update();
 	//void attack();
 private:
@@ -34,4 +35,19 @@ private:
 	Weapon* weapon;
 	Armor* armor[3];
 };
+
+class Player : public Character
+{
+public:
+	Player() : Character(){};
+	virtual char type() { return 'P'; }
+};
+
+class Enemy : public Character
+{
+public:
+	Enemy() : Character(){};
+	virtual char type() { return 'E'; }
+};
+
 #endif /* CHARACTER_H */

@@ -32,11 +32,11 @@ int main(int argc, char* argv[])
 
 	std::cout << std::endl << "TESTING CHARACTER" << std::endl;
 	Weapon * pItem = new Sword;
-	GameData::instance()->player.setWeapon(pItem);
-	GameData::instance()->player.setArmor(new Armor(LEGS, METAL, 2));
-	GameData::instance()->player.getWeapon()->print();
-	GameData::instance()->player.getArmor()[LEGS]->print();
-	GameData::instance()->player.setMe('@');
+	GameData::instance()->player->setWeapon(pItem);
+	GameData::instance()->player->setArmor(new Armor(LEGS, METAL, 2));
+	GameData::instance()->player->getWeapon()->print();
+	GameData::instance()->player->getArmor()[LEGS]->print();
+	GameData::instance()->player->setMe('@');
 
 	std::cout << std::endl << "TESTING STORE" << std::endl;
 	// Store testing
@@ -61,8 +61,10 @@ int main(int argc, char* argv[])
 	//std::cin >> pause;
 
 	
-
-	GameData::instance()->map.addCharacter(&GameData::instance()->player, 2, 2);
+	MTRand_int32 rand;
+	GameData::instance()->map.addCharacter(GameData::instance()->player, 2, 2);
+	for (auto enemy : GameData::instance()->enemies)
+		GameData::instance()->map.addCharacter(enemy, rand() % 10, rand() % 10);
 	GameData::instance()->map.draw();
 	while (true)
 	{
@@ -71,6 +73,7 @@ int main(int argc, char* argv[])
 		{
 			//std::cerr << "Up was pressed" << std::endl;
 			GameData::instance()->map.movePlayer(1, 0);
+			GameData::instance()->map.moveEnemies();
 			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
@@ -79,6 +82,7 @@ int main(int argc, char* argv[])
 
 			//std::cerr << "Left was pressed" << std::endl;
 			GameData::instance()->map.movePlayer(0, -1);
+			GameData::instance()->map.moveEnemies();
 			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
@@ -86,6 +90,7 @@ int main(int argc, char* argv[])
 		{
 			//std::cerr << "Right was pressed" << std::endl;
 			GameData::instance()->map.movePlayer(0, 1);
+			GameData::instance()->map.moveEnemies();
 			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
@@ -93,6 +98,7 @@ int main(int argc, char* argv[])
 		{
 			//std::cerr << "Down was pressed" << std::endl;
 			GameData::instance()->map.movePlayer(-1, 0);
+			GameData::instance()->map.moveEnemies();
 			GameData::instance()->map.draw();
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
 		}
