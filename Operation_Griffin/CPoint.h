@@ -1,6 +1,5 @@
-#ifndef CPOINT_H
-#define CPOINT_H
-
+#pragma once
+#include <iostream>
 #include <math.h>
 
 class CPoint
@@ -12,10 +11,13 @@ public:
 	void setY(int pY) { y = pY; }
 	int getX() { return x; }
 	int getY() { return y; }
+	void setPoint(int pX, int pY) { x = pX; y = pY; }
 	int difference(CPoint p) { return std::sqrt(std::pow(x + p.getX(), 2) + std::pow(y + p.getY(), 2)); }
 private:
 	int x;
 	int y;
 };
 
-#endif /* CPOINT_H */
+inline std::ostream& operator<<(std::ostream& out, CPoint & point){
+	return out << "(" << point.getX() << ',' << point.getY() << ")";
+}

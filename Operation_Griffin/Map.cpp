@@ -76,7 +76,7 @@ void Map::addCharacter(Character* pCharacter, int pX, int pY)
 	assert(pX > -1);
 	assert(pY < MAX_Y);
 	assert(pY > -1);
-
+	pCharacter->getPoint().setPoint(pX, pY);
 	map[pX][pY].push_back(pCharacter);
 }
 

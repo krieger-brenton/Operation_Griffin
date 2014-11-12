@@ -1,6 +1,4 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
-
+#pragma once
 #include "Weapon.h"
 #include "Armor.h"
 #include "CPoint.h"
@@ -16,6 +14,7 @@ public:
 	void setArmor(Armor* pArmor);
 	void setDirection(int pDirection);
 	void setHealth(int h){ Health = h; };
+	CPoint & getPoint() { return location; }
 	int  getHealth(){ return Health; }
 	int getDirection() { return direction; }
 	Weapon* getWeapon() { return weapon; }
@@ -54,5 +53,3 @@ public:
 	Enemy() : Character() { setName("Enemy"); }
 	virtual char type() { return 'E'; }
 };
-
-#endif /* CHARACTER_H */

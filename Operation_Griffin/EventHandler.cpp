@@ -34,6 +34,7 @@ bool EventHandler::resolveEvents()
 
 void EventHandler::resolveKeyEvent(Event* event) {
 	KeyEvent* keyEvent = static_cast<KeyEvent*>(event);
+
 	if (keyEvent->getKey() == "VK_UP")
 	{
 		//std::cerr << "Up was pressed" << std::endl;
@@ -108,6 +109,9 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(150));
 	}
 	*/
+	std::cerr << "Player position: " << GameData::instance()->player->getPoint() << std::endl;
+
+
 }
 
 void EventHandler::resolveCombatEvent(Event* event) {

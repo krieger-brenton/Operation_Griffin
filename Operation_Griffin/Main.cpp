@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 	
 	MTRand_int32 rand;
-	GameData::instance()->map.addCharacter(GameData::instance()->player, 2, 2);
+	GameData::instance()->map.addCharacter(GameData::instance()->player, rand() % 10, rand() % 10);
 	for (auto enemy : GameData::instance()->enemies)
 		GameData::instance()->map.addCharacter(enemy, rand() % 10, rand() % 10);
 	GameData::instance()->map.draw();
