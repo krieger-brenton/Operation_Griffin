@@ -55,7 +55,6 @@ void Map::draw()
 			
 			if (count == 0)
 			{
-				//todo: get some randomly generated terrain in here
 				if (x == 0 || x == MAX_X - 1)
 					std::cout << '-' << std::setw(3);
 				else if (y == 0 || y == MAX_Y - 1)
