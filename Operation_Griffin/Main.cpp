@@ -10,10 +10,11 @@
 #include <thread>
 #include <chrono>
 #include "GameData.h"
+#include "GameLogic.h"
 
 //initialize our Singleton pointers to NULL
-GameData *GameData::s_instance = NULL;
-
+GameData  *GameData:: s_instance = NULL;
+GameLogic *GameLogic::s_instance = NULL;
 /*******************************************
 * Main.
 * 'nough said.
@@ -69,64 +70,10 @@ int main(int argc, char* argv[])
 	while (true)
 	{
 		//poll keyboard
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-		{
-			//std::cerr << "Up was pressed" << std::endl;
-			GameData::instance()->map.movePlayer(1, 0);
-			GameData::instance()->map.moveEnemies();
-			GameData::instance()->map.draw();
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		{
-
-			//std::cerr << "Left was pressed" << std::endl;
-			GameData::instance()->map.movePlayer(0, -1);
-			GameData::instance()->map.moveEnemies();
-			GameData::instance()->map.draw();
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		{
-			//std::cerr << "Right was pressed" << std::endl;
-			GameData::instance()->map.movePlayer(0, 1);
-			GameData::instance()->map.moveEnemies();
-			GameData::instance()->map.draw();
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		{
-			//std::cerr << "Down was pressed" << std::endl;
-			GameData::instance()->map.movePlayer(-1, 0);
-			GameData::instance()->map.moveEnemies();
-			GameData::instance()->map.draw();
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-		{
-			std::cerr << "Space was pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState('D') & 0x8000)
-		{
-			std::cerr << "d was pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState('W') & 0x8000)
-		{
-			std::cerr << "w was pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState('A') & 0x8000)
-		{
-			std::cerr << "a was pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
-		if (GetAsyncKeyState('S') & 0x8000)
-		{
-			std::cerr << "s was pressed" << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(150));
-		}
+		GameLogic::instance()->pollKeyboard();
+		
+		//handle Events
+		GameLogic::instance()->ev.resolveEvents();
 	}
 	return 0;
 }

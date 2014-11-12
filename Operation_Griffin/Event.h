@@ -6,20 +6,19 @@ class Event
 {
 public:
 	void print() {}
-	void setType(char c) { type = c; }
-	char getType() { return type; }
+	virtual char getType() { return 'E'; }
 private:
-	char type;
 
 };
 
 class KeyEvent : public Event
 {
 public:
-	KeyEvent() : Event() { setType('K'); }
+	KeyEvent() : Event() {}
 	KeyEvent(std::string keypress) : KeyEvent() { key = keypress; }
 	void setKey(std::string keypress) { key = keypress; };
 	std::string getKey(){ return key; }
+	virtual char getType() { return 'K'; }
 private:
 	std::string key;
 };
@@ -27,8 +26,9 @@ private:
 class CombatEvent : public Event
 {
 public:
-	CombatEvent() : Event() { setType('C');  }
+	CombatEvent() : Event() {}
 	CombatEvent(Character* def, Character* atk, Character* dam) : CombatEvent() { defender = def; attacker = atk; damage = dam; }
+	virtual char getType() { return 'C'; }
 	void setDefender(Character* def) { defender = def; }
 	void setAttacker(Character* atk) { attacker = atk; }
 	void setDamage(Character* dam)   { damage   = dam; }
