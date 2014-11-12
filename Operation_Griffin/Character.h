@@ -15,6 +15,8 @@ public:
 	void setWeapon(Weapon* pWeapon);
 	void setArmor(Armor* pArmor);
 	void setDirection(int pDirection);
+	void setHealth(int h){ Health = h; };
+	int  getHealth(){ return Health; }
 	int getDirection() { return direction; }
 	Weapon* getWeapon() { return weapon; }
 	Armor** getArmor() { return armor; }
@@ -22,6 +24,8 @@ public:
 	char getMe() { return me; }
 	void setMe(char a) { me = a; }
 	virtual char type() { return 'C'; }
+	std::string getName() { return name; }
+	void setName(std::string newName) { name = newName; }
 	//void update();
 	//void attack();
 private:
@@ -34,19 +38,20 @@ private:
 	int Agility;
 	Weapon* weapon;
 	Armor* armor[3];
+	std::string name;
 };
 
 class Player : public Character
 {
 public:
-	Player() : Character() {}
+	Player() : Character() { setName("Player"); }
 	virtual char type() { return 'P'; }
 };
 
 class Enemy : public Character
 {
 public:
-	Enemy() : Character() {}
+	Enemy() : Character() { setName("Enemy"); }
 	virtual char type() { return 'E'; }
 };
 

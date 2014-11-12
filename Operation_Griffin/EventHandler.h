@@ -9,6 +9,8 @@ class EventHandler
 public:
 	bool addEvent(Event* event);
 	bool resolveEvents();
+	void resolveKeyEvent(Event* event);
+	void resolveCombatEvent(Event* event);
 private:
 	std::vector<Event*> events;
 };
