@@ -30,6 +30,12 @@ class CombatEvent : public Event
 public:
 	CombatEvent() : Event() { setType('C');  }
 	CombatEvent(Character* def, Character* atk, Character* dam) : CombatEvent() { defender = def; attacker = atk; damage = dam; }
+	void setDefender(Character* def) { defender = def; }
+	void setAttacker(Character* atk) { attacker = atk; }
+	void setDamage(Character* dam)   { damage   = dam; }
+	Character* getDefender() { return defender; }
+	Character* getAttacker() { return attacker; }
+	Character* getDamage()	 { return damage; }
 private:
 	Character* defender;
 	Character* attacker;
