@@ -12,7 +12,6 @@ private:
 	char type;
 
 };
-#endif /* EVENT_H */
 
 class KeyEvent : public Event
 {
@@ -41,3 +40,6 @@ private:
 	Character* attacker;
 	Character* damage;
 };
+
+
+#endif /* EVENT_H */
