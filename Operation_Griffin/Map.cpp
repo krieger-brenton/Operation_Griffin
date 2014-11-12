@@ -11,12 +11,12 @@
 Map::Map()
 {
 	Character* pPlayer = NULL;
-	for (int x = 0; x < MAX_X; ++x)
+	for (int row = 0; row < MAX_X; ++row)
 	{
-		for (int y = 0; y < MAX_Y; ++y)
+		for (int col = 0; col < MAX_Y; ++col)
 		{
-			//is there a better way to initialize this?
-			map[x][y].push_back(pPlayer);
+			//is there a better wacol to initialize this?
+			map[row][col].push_back(pPlayer);
 		}
 	}
 }
@@ -27,15 +27,15 @@ Map::Map()
 void Map::draw()
 {
 	int count = 0;
-	system("CLS"); //windows only
-	//You have to draw the rows in reverse order to follow x,y coords
-	for (int x = MAX_X - 1; x > -1; x--)
+	system("CLS"); //windows onlcol
+	//colou have to draw the rows in reverse order to follow row,col coords
+	for (int row = MAX_X - 1; row > -1; row--)
 	{
-		for (int y = 0; y < MAX_Y; ++y)
+		for (int col = 0; col < MAX_Y; ++col)
 		{
 			count = 0;
 			//when we find a vector with something in it!
-			for (std::vector<Character*>::iterator it = map[x][y].begin(); it != map[x][y].end(); it++)
+			for (std::vector<Character*>::iterator it = map[row][col].begin(); it != map[row][col].end(); it++)
 			{
 				if (*it != NULL) 
 				{
@@ -49,15 +49,15 @@ void Map::draw()
 			}
 
 			if (count == 1)
-				for (auto character : map[x][y])
+				for (auto character : map[row][col])
 					if (character != NULL)
 						character->draw();
 			
 			if (count == 0)
 			{
-				if (x == 0 || x == MAX_X - 1)
+				if (row == 0 || row == MAX_X - 1)
 					std::cout << '-' << std::setw(3);
-				else if (y == 0 || y == MAX_Y - 1)
+				else if (col == 0 || col == MAX_Y - 1)
 					std::cout << '|' << std::setw(3);
 				else
 					std::cout << '.' << std::setw(3);
@@ -68,38 +68,43 @@ void Map::draw()
 }
 
 /****************************************************
-* Put a character in (x,y) spot
+* Put a character in (row,col) spot
 *****************************************************/
-void Map::addCharacter(Character* pCharacter, int pX, int pY)
+void Map::addCharacter(Character* pCharacter, int row, int col)
 {
-	assert(pX < MAX_X);
-	assert(pX > -1);
-	assert(pY < MAX_Y);
-	assert(pY > -1);
-	pCharacter->getPoint().setPoint(pX, pY);
-	map[pX][pY].push_back(pCharacter);
+	assert(row < MAX_X);
+	assert(row > -1);
+	assert(col < MAX_Y);
+	assert(col > -1);
+	pCharacter->getPoint().setPoint(col, row);
+	map[row][col].push_back(pCharacter);
+}
+
+void Map::addCharacter(Character* pCharacter, CPoint location)
+{
+
 }
 
 /****************************************************
 * Move a player
 *****************************************************/
-void Map::movePlayer(int xOffset, int yOffset)
+void Map::movePlayer(int rowOffset, int colOffset)
 {
-	for (int x = MAX_X - 1; x > -1; x--)
+	for (int row = MAX_X - 1; row > -1; row--)
 	{
-		for (int y = 0; y < MAX_Y; ++y)
+		for (int col = 0; col < MAX_Y; ++col)
 		{
-			for (auto it = map[x][y].begin(); it != map[x][y].end(); it++)
+			for (auto it = map[row][col].begin(); it != map[row][col].end(); it++)
 			{
 				if (*it != NULL && //make sure we're moving a real player and we're within bounds 
-					x + xOffset < MAX_X  && x + xOffset > -1 &&
-					y + yOffset < MAX_Y  && y + yOffset > -1)
+					row + rowOffset < MAX_X  && row + rowOffset > -1 &&
+					col + colOffset < MAX_Y  && col + colOffset > -1)
 				{
 					if ((*it)->type() != 'E')
 					{
 						std::cout << (*it)->type() << std::endl;
-						addCharacter(*it, x + xOffset, y + yOffset);
-						map[x][y].erase(it);
+						addCharacter(*it, row + rowOffset, col + colOffset);
+						map[row][col].erase(it);
 						return;
 					}
 				}
@@ -113,18 +118,18 @@ void Map::moveEnemies()
 	bool fMoved = false;
 	MTRand_int32 rand;
 	std::vector<Character*> moved;
-	for (int x = MAX_X - 1; x > -1; x--)
+	for (int row = MAX_X - 1; row > -1; row--)
 	{
-		for (int y = 0; y < MAX_Y; ++y)
+		for (int col = 0; col < MAX_Y; ++col)
 		{
-			for (int i = 0; i < map[x][y].size(); i++)
+			for (int i = 0; i < map[row][col].size(); i++)
 			{
 				fMoved = false;
-				if (map[x][y][i] != NULL && map[x][y][i]->type() == 'E') //make sure we're moving a real player and we're within bounds 
+				if (map[row][col][i] != NULL && map[row][col][i]->type() == 'E') //make sure we're moving a real player and we're within bounds 
 				{
 					for (auto enemy : moved)
 					{
-						if (map[x][y][i] == enemy)
+						if (map[row][col][i] == enemy)
 						{
 							fMoved = true;
 						}
@@ -132,18 +137,18 @@ void Map::moveEnemies()
 					if (!fMoved)
 					{
 						fMoved = true;
-						moved.push_back(map[x][y][i]);
-						int xOffset = rand() % 2;
+						moved.push_back(map[row][col][i]);
+						int rowOffset = rand() % 2;
 						if (rand() % 2 == 1)
-							xOffset *= -1;
-						int yOffset = rand() % 2;
+							rowOffset *= -1;
+						int colOffset = rand() % 2;
 						if (rand() % 2 == 1)
-							yOffset *= -1;
-						if (x + xOffset < MAX_X  && x + xOffset > -1 &&
-							y + yOffset < MAX_Y  && y + yOffset > -1)
+							colOffset *= -1;
+						if (row + rowOffset < MAX_X  && row + rowOffset > -1 &&
+							col + colOffset < MAX_Y  && col + colOffset > -1)
 						{
-							addCharacter(map[x][y][i], x + xOffset, y + yOffset);
-							map[x][y][i] = NULL;
+							addCharacter(map[row][col][i], row + rowOffset, col + colOffset);
+							map[row][col][i] = NULL;
 							i = 0;
 						}
 					}
