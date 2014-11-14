@@ -1,5 +1,6 @@
 #include "EventHandler.h"
 #include <iostream>
+#include <sstream>
 #include "GameData.h"
 bool EventHandler::addEvent(Event* event)
 {
@@ -14,6 +15,11 @@ bool EventHandler::addEvent(Event* event)
 
 bool EventHandler::resolveEvents()
 {
+	if (GameData::instance()->fResetMsg)
+	{
+		GameData::instance()->fResetMsg = false;
+		GameData::instance()->message = "                                                                     ";
+	}
 	while (events.size())
 	{
 		//events.front()->print();
@@ -41,7 +47,6 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		GameData::instance()->player->setDirection(NORTH);
 		GameData::instance()->map.movePlayer(1, 0);
 		GameData::instance()->map.moveEnemies();
-		GameData::instance()->map.draw();
 	}
 	if (keyEvent->getKey() == "VK_LEFT")
 	{
@@ -49,7 +54,6 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		GameData::instance()->player->setDirection(WEST);
 		GameData::instance()->map.movePlayer(0, -1);
 		GameData::instance()->map.moveEnemies();
-		GameData::instance()->map.draw();
 	}
 	if (keyEvent->getKey() == "VK_RIGHT")
 	{
@@ -57,7 +61,6 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		GameData::instance()->player->setDirection(EAST);
 		GameData::instance()->map.movePlayer(0, 1);
 		GameData::instance()->map.moveEnemies();
-		GameData::instance()->map.draw();
 	}
 	if (keyEvent->getKey() == "VK_DOWN")
 	{
@@ -65,27 +68,51 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		GameData::instance()->player->setDirection(SOUTH);
 		GameData::instance()->map.movePlayer(-1, 0);
 		GameData::instance()->map.moveEnemies();
-		GameData::instance()->map.draw();
 	}
 	if (keyEvent->getKey() == "VK_SPACE")
 	{
-		std::cerr << "Soon, Player will attack ";
+		int x = GameData::instance()->player->getPoint().getX();
+		int y = GameData::instance()->player->getPoint().getY();
 		switch (GameData::instance()->player->getDirection())
 		{
+		case 0:
+			y++;
+			break;
+		case 1:
+			x++;
+			break;
+		case 2:
+			y--;
+			break;
+		case 3:
+			x--;
+			break;
+		}
+		Character* defender = GameData::instance()->map.enemyAtPoint(x, y);
+		if (defender)
+		{
+			Event* event = new CombatEvent(defender, GameData::instance()->player);
+			addEvent(event);
+		}
+		else {
+			GameData::instance()->message = "You viciously attack the air to the ";
+			switch (GameData::instance()->player->getDirection())
+			{
 			case 0:
-				std::cerr << "NORTH";
+				GameData::instance()->message += "NORTH";
 				break;
 			case 1:
-				std::cerr << "EAST";
+				GameData::instance()->message +=  "EAST";
 				break;
 			case 2:
-				std::cerr << "SOUTH";
+				GameData::instance()->message += "SOUTH";
 				break;
 			case 3:
-				std::cerr << "WEST";
+				GameData::instance()->message += "WEST";
 				break;
+			}
+			GameData::instance()->message += "              ";
 		}
-		std::cerr << std::endl;
 	}
 	/*
 	if (GetAsyncKeyState('D') & 0x8000)
@@ -109,11 +136,60 @@ void EventHandler::resolveKeyEvent(Event* event) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(150));
 	}
 	*/
-	std::cerr << "Player position: " << GameData::instance()->player->getPoint() << std::endl;
-
-
 }
 
 void EventHandler::resolveCombatEvent(Event* event) {
+	CombatEvent* combatEvent = static_cast<CombatEvent*>(event);
 
+	//get the damage of the weapon the player is using
+	int maxDamage = combatEvent->getAttacker()->getWeapon()->getDamage();
+	
+	//get the main stat of the weapon and apply the appropraite player stat to the damage
+	switch (combatEvent->getAttacker()->getWeapon()->getStat())
+	{
+		case 'S':
+			maxDamage *= combatEvent->getAttacker()->getStr();
+			break;
+	}
+	MTRand_int32 rand;
+	int damage = (rand() % maxDamage) + 1;
+	
+	//critical 
+	if (rand() % 100 > 95)
+		damage = maxDamage * 1.5;
+	
+	/*  THIS IS CAUSING CRASHES :(
+	//get the defense of the defender
+	int def = 0;
+	for (int i = 0; i < 3; i++)
+		def += combatEvent->getDefender()->getArmor()[i]->getResistance();
+
+	//adjust the damage
+	damage = damage - def;
+	*/
+
+	//apply the damage
+	combatEvent->getDefender()->setHealth(combatEvent->getDefender()->getHealth() - damage);
+	GameData::instance()->message = "You attack an enemy to the ";
+	
+	switch (GameData::instance()->player->getDirection())
+	{
+	case 0:
+		GameData::instance()->message += "NORTH";
+		break;
+	case 1:
+		GameData::instance()->message += "EAST";
+		break;
+	case 2:
+		GameData::instance()->message += "SOUTH";
+		break;
+	case 3:
+		GameData::instance()->message += "WEST";
+		break;
+	}
+	GameData::instance()->message += " for ";
+	std::ostringstream oss;
+	oss << damage;
+	GameData::instance()->message += oss.str();
+	GameData::instance()->message += " damage!                ";
 }

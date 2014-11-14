@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Store.h"
 #include <vector>
+#include <string>
 
 
 /**********************************************
@@ -24,6 +25,8 @@ public:
 	std::vector<Character*> enemies;
 	Map map;
 	Store store;
+	std::string message;
+	bool fResetMsg;
 private:
 	static GameData *s_instance;
 	GameData();

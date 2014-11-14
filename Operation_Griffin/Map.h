@@ -20,6 +20,7 @@ public:
 	std::vector<Character*> map[MAX_X][MAX_Y];
 	void movePlayer(int xOffset, int yOffset);
 	void moveEnemies();
+	Character* enemyAtPoint(int x, int y);
 private:
 
 };

@@ -13,6 +13,8 @@ public:
 		return s_instance;
 	}
 	void pollKeyboard();
+	void update();
+	void draw();
 	EventHandler ev;
 private:
 	GameLogic() {};

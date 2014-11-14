@@ -9,14 +9,17 @@ enum DIRECTION { NORTH, EAST, SOUTH, WEST };
 class Character
 {
 public:
-	Character() : me(PLAYER) {}
+	Character();
 	void setWeapon(Weapon* pWeapon);
 	void setArmor(Armor* pArmor);
 	void setDirection(int pDirection);
 	void setHealth(int h){ Health = h; };
 	CPoint & getPoint() { return location; }
-	int  getHealth(){ return Health; }
+	int getStr() { return Strength; }
+	int getHealth(){ return Health; }
 	int getDirection() { return direction; }
+	bool isAlive() { return fAlive; }
+	void kill() { fAlive = false; }
 	Weapon* getWeapon() { return weapon; }
 	Armor** getArmor() { return armor; }
 	void draw();
@@ -25,31 +28,32 @@ public:
 	virtual char type() { return 'C'; }
 	std::string getName() { return name; }
 	void setName(std::string newName) { name = newName; }
-	//void update();
+	void update();
 	//void attack();
+	int Health;
 private:
 	char me;
 	CPoint location;
 	int direction;
-	int Health;
 	int Strength;
 	int Intelligence;
 	int Agility;
 	Weapon* weapon;
 	Armor* armor[3];
 	std::string name;
+	bool fAlive;
 };
 
 class Player : public Character
 {
 public:
-	Player() : Character() { setName("Player"); }
+	Player() : Character() { setName("Player"); setHealth(5); }
 	virtual char type() { return 'P'; }
 };
 
 class Enemy : public Character
 {
 public:
-	Enemy() : Character() { setName("Enemy"); }
+	Enemy() : Character() { setName("Enemy"); setHealth(2); }
 	virtual char type() { return 'E'; }
 };

@@ -4,6 +4,9 @@
 #include <cstdlib>
 #include "mtrand.h"
 #include <cassert>
+#include "windows.h"
+#include <stdio.h>
+#include <conio.h>
 
 /**************************************************
 * Constructor
@@ -26,9 +29,12 @@ Map::Map()
 *****************************************************/
 void Map::draw()
 {
+	COORD coord;
+	coord.X = 0;
+	coord.Y = 0;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 	int count = 0;
-	system("CLS"); //windows onlcol
-	//colou have to draw the rows in reverse order to follow row,col coords
+	//you have to draw the rows in reverse order to follow row,col coords
 	for (int row = MAX_X - 1; row > -1; row--)
 	{
 		for (int col = 0; col < MAX_Y; ++col)
@@ -37,7 +43,7 @@ void Map::draw()
 			//when we find a vector with something in it!
 			for (std::vector<Character*>::iterator it = map[row][col].begin(); it != map[row][col].end(); it++)
 			{
-				if (*it != NULL) 
+				if (*it != NULL && (*it)->isAlive()) 
 				{
 					count++;
 				}
@@ -50,7 +56,7 @@ void Map::draw()
 
 			if (count == 1)
 				for (auto character : map[row][col])
-					if (character != NULL)
+					if (character != NULL && character->isAlive())
 						character->draw();
 			
 			if (count == 0)
@@ -125,7 +131,7 @@ void Map::moveEnemies()
 			for (int i = 0; i < map[row][col].size(); i++)
 			{
 				fMoved = false;
-				if (map[row][col][i] != NULL && map[row][col][i]->type() == 'E') //make sure we're moving a real player and we're within bounds 
+				if (map[row][col][i] != NULL && map[row][col][i]->type() == 'E' && map[row][col][i]->isAlive()) //make sure we're moving an enemy and we're within bounds 
 				{
 					for (auto enemy : moved)
 					{
@@ -156,4 +162,13 @@ void Map::moveEnemies()
 			}
 		}
 	}
+}
+
+Character* Map::enemyAtPoint(int x, int y)
+{
+	if (y < MAX_X  && y > -1 && x < MAX_Y  && x > -1)
+		for (auto character : map[y][x])
+			if (character != NULL && character->isAlive())
+				return character;
+	return NULL;
 }

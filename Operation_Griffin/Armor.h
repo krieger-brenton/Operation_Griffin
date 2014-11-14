@@ -47,7 +47,7 @@ class Armor : public Item
 {
 public:
 	//constructors
-	Armor() : Item(), type(NO_TYPE), material(NO_MAT), resistance(0) { setName("ARMOR"); }
+	Armor() : Item(), type(NO_TYPE), material(NO_MAT) { setName("ARMOR"); resistance = 1; }
 	Armor(int pType, int pMaterial, int pResistance);
 	Armor(int pType, int pMaterial, int pResistance, int pStrength,
 		int pIntelligence, int pAgility);

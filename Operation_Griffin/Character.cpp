@@ -1,8 +1,22 @@
 #include "Character.h"
 #include <iostream>
 #include <iomanip>
-#include <cassert> 
+#include <cassert>
+#include "GameData.h"
 
+
+/**/
+Character::Character() {
+	me = PLAYER;
+	Strength = 1; 
+	Health = 2; 
+	Agility = 1; 
+	Intelligence = 1; 
+	weapon = new Weapon();
+	for (auto a : armor)
+		a = new Armor();
+	fAlive = true;
+}
 /**/
 void Character::setDirection(int pDirection)
 {
@@ -34,4 +48,17 @@ void Character::setArmor(Armor* pArmor)
 		armor[pArmor->getType()] = pArmor;
 	else
 		; //throw error?
+}
+
+void Character::update()
+{
+	int health = getHealth();
+	if (health <= 0)
+	{
+		kill();
+		GameData::instance()->map.draw();
+		GameData::instance()->message += "\n";
+		GameData::instance()->message += me;
+		GameData::instance()->message += " dies an ignominious death.";
+	}
 }

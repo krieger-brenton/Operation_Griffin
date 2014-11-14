@@ -13,14 +13,19 @@
 #include "GameLogic.h"
 
 //initialize our Singleton pointers to NULL
-GameData  *GameData:: s_instance = NULL;
 GameLogic *GameLogic::s_instance = NULL;
+GameData  *GameData:: s_instance = NULL;
 /*******************************************
 * Main.
 * 'nough said.
 ********************************************/
 int main(int argc, char* argv[])
 {
+	COORD coord;
+	coord.X = 0;
+	coord.Y = 13;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+
 	std::cout << "TESTING INVENTORY" << std::endl;
 	Item* inventory[3];
 	inventory[0] = new Sword;
@@ -61,7 +66,7 @@ int main(int argc, char* argv[])
 	//int pause;
 	//std::cin >> pause;
 
-	
+	int i = 0;
 	MTRand_int32 rand;
 	GameData::instance()->map.addCharacter(GameData::instance()->player, rand() % 10, rand() % 10);
 	for (auto enemy : GameData::instance()->enemies)
@@ -74,6 +79,13 @@ int main(int argc, char* argv[])
 		
 		//handle Events
 		GameLogic::instance()->ev.resolveEvents();
+
+		//update
+		GameLogic::instance()->update();
+
+		//draw
+		GameLogic::instance()->draw();
+
 	}
 	return 0;
 }
