@@ -62,3 +62,30 @@ void Character::update()
 		GameData::instance()->message += " dies an ignominious death.";
 	}
 }
+/*Checks armor and weapon and sets the damage
+* damage = (Strength^2 + Intelligence^2 + Agility^2)/2 
+* this will provide more damage for specilizing in one trait.
+*/
+void Character::damageUpdate()
+{
+	//get stats from base char
+	int strength = Strength;
+	int intelligence = Intelligence;
+	int agility = Agility;
+
+	//get stats from weapon
+	strength += weapon->getStrength();
+	intelligence += weapon->getIntelligence();
+	agility += weapon->getAgility();
+
+	//get stats from armor
+	for (auto gear : armor)
+	{
+		strength += gear->getStrength();
+		intelligence += gear->getIntelligence();
+		agility += gear->getAgility();
+	}
+
+	//get damage from weapon
+	damage = weapon->getDamage + (( (Strength * Strength) + (Intelligence * Intelligence) + (Agility * Agility) ) / 2);
+}

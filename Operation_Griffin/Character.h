@@ -29,6 +29,7 @@ public:
 	std::string getName() { return name; }
 	void setName(std::string newName) { name = newName; }
 	void update();
+	void damageUpdate();
 	//void attack();
 	int Health;
 private:
@@ -38,6 +39,7 @@ private:
 	int Strength;
 	int Intelligence;
 	int Agility;
+	int damage;
 	Weapon* weapon;
 	Armor* armor[3];
 	std::string name;
