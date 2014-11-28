@@ -74,9 +74,12 @@ void Character::damageUpdate()
 	int agility = Agility;
 
 	//get stats from weapon
-	strength += weapon->getStrength();
-	intelligence += weapon->getIntelligence();
-	agility += weapon->getAgility();
+	if (weapon != NULL)
+	{
+		strength += weapon->getStrength();
+		intelligence += weapon->getIntelligence();
+		agility += weapon->getAgility();
+	}
 
 	//get stats from armor
 	for (auto gear : armor)
