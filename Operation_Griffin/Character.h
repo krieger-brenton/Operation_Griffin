@@ -56,4 +56,15 @@ class Enemy : public Character
 public:
 	Enemy() : Character() { setName("Enemy"); setHealth(2); }
 	virtual char type() { return 'E'; }
+	void update();
+};
+
+
+//~/\~ This could prolly be better, I'm adding it to see if it works.
+struct Move
+{
+	int startX;
+	int startY;
+	int destX;
+	int destY;
 };

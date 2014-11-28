@@ -28,6 +28,8 @@ bool EventHandler::resolveEvents()
 			resolveKeyEvent(events.front());
 		else if (events.front()->getType() == 'C')
 			resolveCombatEvent(events.front());
+		else if (events.front()->getType() == 'M')
+			resolveMoveEvent(events.front());
 		else
 			std::cerr << "Event Type \"" << events.front()->getType() << "\" cannot be handled." << std::endl;
 		events.erase(events.begin());
@@ -192,4 +194,11 @@ void EventHandler::resolveCombatEvent(Event* event) {
 	oss << damage;
 	GameData::instance()->message += oss.str();
 	GameData::instance()->message += " damage!                ";
+}
+
+bool EventHandler::resolveMoveEvent(Event* event)
+{
+	MoveEvent* moveEvent = static_cast<MoveEvent*>(event);
+	GameData::instance()->map.moveEnemy(moveEvent->getEnemy(), moveEvent->getMove());
+	return true;
 }

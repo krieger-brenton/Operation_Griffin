@@ -72,7 +72,7 @@ void GameLogic::update()
 	for (int i = 0; i < GameData::instance()->enemies.size(); i++)
 		if (GameData::instance()->enemies[i] && !GameData::instance()->enemies[i]->isAlive())
 		{
-			GameData::instance()->enemies[i] = NULL;
+			GameData::instance()->enemies[i] = NULL; //~/\~ is this causing a memory leak? I think we need a delete here.
 		}
 }
 
@@ -80,6 +80,4 @@ void GameLogic::draw()
 {
 	GameData::instance()->map.draw();
 	std::cout << GameData::instance()->message << std::endl;
-	
-
 }

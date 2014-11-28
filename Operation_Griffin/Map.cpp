@@ -172,3 +172,27 @@ Character* Map::enemyAtPoint(int x, int y)
 				return character;
 	return NULL;
 }
+
+bool Map::moveEnemy(Character* enemy, Move move)
+{
+	//find a null pointer in the destination vector and assign it to the moved enemy.
+	for (auto character : map[move.destX][move.destY])
+	{
+		if (character != NULL)
+		{
+			character = enemy;
+
+			//find the old pointer and assign it to null.
+			for (auto character : map[move.startX][move.startY])
+			{
+				if (character == enemy)
+				{
+					character = NULL;
+					return true;
+				}
+			}
+			break;
+		}
+	}
+	return false;
+}

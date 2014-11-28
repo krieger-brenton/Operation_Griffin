@@ -11,6 +11,7 @@ public:
 	bool resolveEvents();
 	void resolveKeyEvent(Event* event);
 	void resolveCombatEvent(Event* event);
+	bool resolveMoveEvent(Event* event);
 private:
 	std::vector<Event*> events;
 };

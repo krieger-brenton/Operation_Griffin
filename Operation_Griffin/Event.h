@@ -39,5 +39,16 @@ private:
 	Character* damage;
 };
 
+class MoveEvent : public Event
+{
+public:
+	MoveEvent(Move move, Character* enemy) : move(move), enemy(enemy) {}
+	virtual char getType() { return 'M'; }
+	Move getMove() { return move; }
+	Character* getEnemy() { return enemy; }
+private:
+	Move move;
+	Character* enemy;
+};
 
 #endif /* EVENT_H */
