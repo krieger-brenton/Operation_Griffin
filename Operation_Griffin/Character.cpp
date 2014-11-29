@@ -93,5 +93,5 @@ void Character::damageUpdate()
 	}
 
 	//get damage from weapon
-	damage = (weapon == NULL) ? (1) : (weapon->getDamage) + (((Strength * Strength) + (Intelligence * Intelligence) + (Agility * Agility)) / 2);
+	damage = (weapon == NULL) ? (1) : (weapon->getDamage()) + (((Strength * Strength) + (Intelligence * Intelligence) + (Agility * Agility)) / 2);
 }
