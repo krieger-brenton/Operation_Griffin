@@ -1,12 +1,24 @@
+#ifdef WINDOWS
+#define W(x) x
+#else
+#define W(x)
+#endif
+
+#ifdef LINUX
+#define L(x) x
+#else
+#define L(x)
+#endif 
+
 #include "GameLogic.h"
 #include "GameData.h"
 #include "Event.h"
 #include <chrono>
 #include <thread>
-#include <Windows.h>
+W(#include <Windows.h>);
 
 void GameLogic::pollKeyboard(){
-	Event * event = NULL;
+	W(Event * event = NULL;
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
 		event = new KeyEvent("VK_UP");
@@ -61,6 +73,7 @@ void GameLogic::pollKeyboard(){
 	*/
 	if (event)
 		ev.addEvent(event);
+	)
 }
 
 void GameLogic::update()
@@ -78,6 +91,14 @@ void GameLogic::update()
 
 void GameLogic::draw()
 {
+	L(if (!cur_term)
+						 {
+						 int result;
+						 setupterm( NULL, STDOUT_FILENO, &result );
+						 }
+
+						 putp( tigetstr( "clear" ) ););
+	system("clear");
 	GameData::instance()->map.draw();
 	std::cout << GameData::instance()->message << std::endl;
 }

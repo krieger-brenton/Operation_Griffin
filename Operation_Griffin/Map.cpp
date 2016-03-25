@@ -1,12 +1,24 @@
+#ifdef WINDOWS
+#define W(x) x
+#else
+#define W(x)
+#endif
+
+#ifdef LINUX
+#define L(x) x
+#else
+#define L(x)
+#endif 
+
 #include "Map.h"
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
 #include "mtrand.h"
 #include <cassert>
-#include "windows.h"
+W(#include "windows.h")
 #include <stdio.h>
-#include <conio.h>
+W(#include <conio.h>)
 
 /**************************************************
 * Constructor
@@ -29,10 +41,10 @@ Map::Map()
 *****************************************************/
 void Map::draw()
 {
-	COORD coord;
-	coord.X = 0;
-	coord.Y = 0;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	W(COORD coord;);
+	W(coord.X = 0;);
+	W(coord.Y = 0;);
+	W(SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord););
 	int count = 0;
 	//you have to draw the rows in reverse order to follow row,col coords
 	for (int row = MAX_X - 1; row > -1; row--)

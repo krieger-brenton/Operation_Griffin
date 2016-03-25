@@ -10,7 +10,7 @@ public:
 	int getDamage() { return damage; }
 	char getStat() { return stat;  }
 	void setDamage(int pDamage);
-	void print() sealed;
+	void print(); //sealed;
 	
 private:
 	int damage;

@@ -1,7 +1,13 @@
+#ifdef WINDOWS
+#define W(x) x
+#else
+#define W(x)
+#endif
+
 #include "Random.h"
 #include <iostream>
 #include <chrono>
-#include <Windows.h>
+W(#include <Windows.h>)
 #include <cmath>
 
 

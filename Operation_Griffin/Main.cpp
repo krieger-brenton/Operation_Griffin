@@ -1,3 +1,15 @@
+#ifdef WINDOWS
+#define W(x) x
+#else
+#define W(x)
+#endif
+
+#ifdef LINUX
+#define L(x) x
+#else
+#define L(x)
+#endif
+
 #include "Character.h"
 #include "Sword.h"
 #include "Mace.h"
@@ -6,7 +18,7 @@
 #include "mtrand.h"
 #include "Store.h"
 #include <iostream>
-#include <windows.h>
+W(#include <windows.h>)
 #include <thread>
 #include <chrono>
 #include "GameData.h"
@@ -21,10 +33,10 @@ GameData  *GameData:: s_instance = NULL;
 ********************************************/
 int main(int argc, char* argv[])
 {
-	COORD coord;
-	coord.X = 0;
-	coord.Y = 13;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	W(COORD coord;);
+	W(coord.X = 0;);
+	W(coord.Y = 13;);
+	W(SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord););
 
 	std::cout << "TESTING INVENTORY" << std::endl;
 	Item* inventory[3];
@@ -87,5 +99,6 @@ int main(int argc, char* argv[])
 		GameLogic::instance()->draw();
 
 	}
+
 	return 0;
 }

@@ -1,8 +1,11 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++11
 
-all: Main.cpp Item.o Armor.o Character.o Enemy.o EventHandler.o GameData.o GameLogic.o Map.o Random.o mtrand.o store.o weapon.o
-	$(CC) $(CFLAGS) -o griffin.out 
+windows: Main.cpp Item.o Armor.o Character.o Enemy.o EventHandler.o GameData.o GameLogic.o Map.o Random.o mtrand.o Store.o Weapon.o
+	$(CC) $(CFLAGS) -DWINDOWS -o griffin.out Main.cpp Item.o Armor.o Character.o Enemy.o EventHandler.o GameData.o GameLogic.o Map.o Random.o mtrand.o Store.o Weapon.o
+
+linux: Main.cpp Item.o Armor.o Character.o Enemy.o EventHandler.o GameData.o GameLogic.o Map.o Random.o mtrand.o Store.o Weapon.o
+	$(CC) $(CFLAGS) -DLINUX -o griffin.out Main.cpp Item.o Armor.o Character.o Enemy.o EventHandler.o GameData.o GameLogic.o Map.o Random.o mtrand.o Store.o Weapon.o
 
 Item.o: Item.cpp Item.h
 	$(CC) $(CFLAGS) -c Item.cpp

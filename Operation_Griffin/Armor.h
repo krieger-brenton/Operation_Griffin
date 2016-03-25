@@ -63,7 +63,7 @@ public:
 	inline int getResistance() { return resistance; }
 
 	//display
-	void print() sealed;
+	void print(); //sealed;
 
 private:
 	int type;
